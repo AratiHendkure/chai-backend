@@ -1,5 +1,16 @@
-import mongoose from "mongoose";
-import {DB_NAME} from "./constants"
+import 'dotenv/config';
+import connectDB from "./db/index.js";
+import { DB_NAME } from "./constants.js";
+
+console.log(
+  "ENV CHECK:",
+  `${process.env.MONGODB_URI}/${DB_NAME}`
+);
+
+connectDB();
+
+
+
 
 
 
