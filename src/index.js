@@ -1,24 +1,19 @@
-import 'dotenv/config';
+import "dotenv/config";
 import connectDB from "./db/index.js";
 import { DB_NAME } from "./constants.js";
+import { app } from "./app.js";
 
-console.log(
-  "ENV CHECK:",
-  `${process.env.MONGODB_URI}/${DB_NAME}`
-);
+console.log("ENV CHECK:", `${process.env.MONGODB_URI}/${DB_NAME}`);
 
-connectDB();
-
-
-
-
-
-
-
-
-
-
-
+connectDB()
+  .then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`server is running at port : ${process.env.PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.log("MONGODB connection Failed !!! ", err);
+  }); //promesses written after asyncronus method
 
 // import express from "express"
 // const app = express()

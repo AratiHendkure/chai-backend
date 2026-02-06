@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 import { DB_NAME } from "../constants.js";
 
+import { app } from "../app.js";
+
 //db is another continent
 const connectDB = async () => {
   try {
+    app.on("error",(error)=>{
+            console.log("ERROR: ", error);
+            throw error
+        })
     const connectionInstance = await mongoose.connect(
       `${process.env.MONGODB_URI}/${DB_NAME}`
     );
